@@ -1,0 +1,29 @@
+﻿@*@model List<SellerProductsDto>*@
+@{
+    Layout = null;
+}
+@if (ViewData["model"] != null)
+{
+    <table class="table" role="grid">
+        <thead>
+            <tr>
+                <th>نام کالا</th>
+                <th>تعداد</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewData["model"] as List<SellerProductsDto>)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.inventory</td>
+                    <td>
+                         <a onclick="GetDetail('@item.ProductId')">جزئیات</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

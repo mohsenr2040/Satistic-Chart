@@ -1,0 +1,416 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Chart_in_Core.Models.ViewModels
+@model SellerProductsViewModel
+
+@{
+        var XLabels = Newtonsoft.Json.JsonConvert.SerializeObject("{ DimensionOne:null}");
+        var YValues = Newtonsoft.Json.JsonConvert.SerializeObject("{ Quantity: null }");
+        if (Model.SimpleReports!=null)
+        {
+            XLabels = Newtonsoft.Json.JsonConvert.SerializeObject(Model.SimpleReports.Select(x => x.DimensionOne).ToList());
+            YValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.SimpleReports.Select(x => x.Quantity).ToList());
+
+        }
+
+    }
+    @inject IAuthorizationService _authorizationService
+@*<!DOCTYPE html >
+    <html lang="fa" dir="rtl">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />*@
+<!--<link rel="stylesheet" href="~/SiteTemplate/assets/css/vendor/font-awesome.min.css">
+<link rel="stylesheet" href="~/SiteTemplate/assets/css/vendor/materialdesignicons.css">-->
+<!-- plugin-------------------------------------->
+<!--<link rel="stylesheet" href="~/SiteTemplate/assets/css/vendor/bootstrap.css">
+<link rel="stylesheet" href="~/SiteTemplate/assets/css/vendor/owl.carousel.min.css">
+<link rel="stylesheet" href="~/SiteTemplate/assets/css/vendor/nice-select.css">-->
+<!-- main-style---------------------------------->
+<!--<link rel="stylesheet" href="~/SiteTemplate/assets/css/main.css">
+<link rel="stylesheet" href="~/SiteTemplate/assets/css/responsive.css">-->
+<!--<script src="~/SiteTemplate/assets/js/vendor/jquery-3.2.1.min.js"></script>
+<script src="~/SiteTemplate/assets/js/vendor/bootstrap.js"></script>-->
+<!-- plugin----------------------------------------------------->
+<!--<script src="~/SiteTemplate/assets/js/vendor/owl.carousel.min.js"></script>
+<script src="~/SiteTemplate/assets/js/vendor/jquery.countdown.js"></script>
+<script src="~/SiteTemplate/assets/js/vendor/jquery.nice-select.min.js"></script>-->
+<!-- main js---------------------------------------------------->
+<!--<script src="~/SiteTemplate/assets/js/main.js"></script>-->
+@*</head>
+    <body>*@
+<section class="basic-elements">
+    <form method="get" asp-action="Lookup" asp-controller="Home">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div dir="rtl" class="card-title-wrap bar-success">
+                            <h5 class="card-title mb-0">جستجو</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="px-3">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1" dir="rtl">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput">کد ملی</label>
+                                            <input type="text" asp-for="CodMelli" class="form-control" id="NationalCode">
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicSelect">منبع</label>
+                                            <select class="form-control" id="ddl_Source" asp-for="ddl_sourceId" asp-items="@((SelectList)ViewData["vm.Select"])">
+                                                <option> انتخاب کنید...</option>
+
+                                            </select>
+                                            @*<p><small class="text-muted">دسته بندی فعالیت را تعیین کنید</small></p>*@
+
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="helpInputTop">سال</label>
+                                            <input type="text" class="form-control" id="Year">
+                                        </fieldset>
+                                    </div>
+
+
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicSelect">دوره</label>
+                                            <select class="form-control" id="Period"
+                                                    onchange="GetSubcategories()">
+
+                                                <option>انتخاب کنید...</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+
+                                            </select>
+                                            @*<p><small class="text-muted">دسته بندی فعالیت را تعیین کنید</small></p>*@
+
+                                        </fieldset>
+                                    </div>
+
+
+                                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <br />
+                                            @*<a onclick="GetSellerProduct()" class="btn btn-success col-md-12">جستجو </a>*@
+                                            <input type="submit" class="btn btn-success col-md-12" value="جستجو" />
+                                        </fieldset>
+                                    </div>
+
+
+                                </div>
+                                @if (Model.productsDtos != null)
+                                {
+                                    <table class="table table-striped table-bordered zero-configuration dataTable" role="grid">
+                                        <thead>
+                                            <tr>
+                                                <th>نام کالا</th>
+                                                <th>تعداد</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.productsDtos)
+                                            {
+                                                <tr>
+                                                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                                    <td>@item.inventory</td>
+                                                    <td>
+                                                        <input type="hidden" asp-for="@item.ProductId" />
+                                                        <a href="javascript:void()"   onclick="GetDetails('@item.ProductId')">جزئیات</a>
+                                                        @*<input type="submit"  value="جزئیات" onclick=" ShowDetailsModal()">*@
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+
+
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            @*    @await Component.InvokeAsync("GetProducts")*@
+        </div>
+    </form>
+
+
+</section>
+<div class="box-body">
+
+    <div class="chart-container">
+        <canvas id="chart2" style="width:50%; height:200px"></canvas>
+    </div>
+</div>
+
+
+<script>
+    function ShowDetailsModal() {
+        $('#DetailsModal').modal('show');
+        setTimeout(function () {
+            var modal = $('#DetailsModal');
+            var canvas = modal.find('.modal-body canvas');
+
+            // Chart initialisieren
+            var ctx = canvas[0].getContext("2d");
+            // var chartName = "chart";
+            //var ctx = $('#DetailsModal').modal('show').getElementById(chartName).getContext('2d');
+            var data = {
+                labels: @Html.Raw(XLabels),
+                datasets: [{
+                    label: "نمودار وضعیت",
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 0, 0)',
+                        'rgba(0, 255, 0)',
+                        'rgba(0, 0, 255)',
+                        'rgba(192, 192, 192)',
+                        'rgba(255, 255, 0)',
+                        'rgba(255, 0, 255)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 0, 0)',
+                        'rgba(0, 255, 0)',
+                        'rgba(0, 0, 255)',
+                        'rgba(192, 192, 192)',
+                        'rgba(255, 255, 0)',
+                        'rgba(255, 0, 255)'
+                    ],
+                    borderWidth: 1,
+                    data: @Html.Raw(YValues)
+            }]
+            };
+
+            var options = {
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                            display: true,
+                            color: "rgba(255,99,164,0.2)"
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            min: 0,
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                            display: false
+                        }
+                    }]
+                }
+            };
+
+            var myChart = new Chart(ctx, {
+                options: options,
+                data: data,
+                type: 'line'
+
+            });
+        }, 2000)
+
+    }
+
+
+    function GetDetails(id) {
+        var postData = {
+            'ProductId': id,
+        };
+        $.ajax({
+            contentType: 'application/x-www-form-urlencoded',
+            dataType: 'json',
+            type: "GET",
+            url: "Lookup",
+            data: postData,
+            success: function (data) { }
+
+        });
+        ShowDetailsModal();
+    }
+
+
+        function GetSellerProduct() {
+            var codmelli = $('#NationalCode').val();
+            var postData = {
+                'CodMelli': codmelli,
+            };
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: "GET",
+                url: "Lookup",
+                data: postData,
+                success: function (data) { }
+
+            });
+    }
+
+     @*$(function () {
+            var chartName = "chart";
+                var ctx = document.getElementById(chartName).getContext('2d');
+                var data = {
+                        labels: @Html.Raw(XLabels),
+                        datasets: [{
+                            label: "Countries Chart",
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 0, 0)',
+                                'rgba(0, 255, 0)',
+                                'rgba(0, 0, 255)',
+                                'rgba(192, 192, 192)',
+                                'rgba(255, 255, 0)',
+                                'rgba(255, 0, 255)'
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(255, 0, 0)',
+                                'rgba(0, 255, 0)',
+                                'rgba(0, 0, 255)',
+                                'rgba(192, 192, 192)',
+                                'rgba(255, 255, 0)',
+                                'rgba(255, 0, 255)'
+                            ],
+                            borderWidth: 1,
+                            data: @Html.Raw(YValues)
+            }]
+                    };
+
+                var options = {
+                        maintainAspectRatio: false,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    beginAtZero: true
+                                },
+                                gridLines: {
+                                    display: true,
+                                    color: "rgba(255,99,164,0.2)"
+                                }
+                                    }],
+                            xAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    beginAtZero: true
+                                },
+                                gridLines: {
+                                    display: false
+                                }
+                            }]
+                        }
+                    };
+
+               var myChart = new  Chart(ctx, {
+                        options: options,
+                        data: data,
+                        type:'line'
+
+                    });
+             });*@
+
+</script>
+    <script src="~/js/Chart.bundle.min.js"></script>
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+
+
+@section Modals
+{
+   
+
+    <!-- Modal  -->
+    <div class="modal fade" id="DetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-body" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"> جزئیات </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#DetailsModal').modal('hide')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="box-body" id="div_Chart">
+                        <div class="chart-container">
+                            <canvas id="chart" style="width:400px; height:200px"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                            <table class="table table-striped table-bordered zero-configuration dataTable" role="grid">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Brand</th>
+                                        <th>Price</th>
+                                        <th>ViewCount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.productDetailsDtos != null)
+                                        @foreach (var item in Model.productDetailsDtos)
+                                        {
+                                            <tr>
+                                                <td>@item.Name</td>
+                                                <td>@item.Brand</td>
+                                                <td>@item.Price</td>
+                                                <td>@item.ViewCount</td>
+                                            </tr>
+                                        }
+
+                                </tbody>
+                            </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+
+
+        
+    </div>
+}
+
+
+@*</body>
+    </html>*@
