@@ -4,6 +4,7 @@ using Chart_in_Core.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -81,17 +82,18 @@ namespace Chart_in_Core.Controllers
             }
             if(ProductId != null)
             {
-                model.productDetailsDtos = _service.GetDetails(ProductId);
+                model.productDetailsDtos =  _service.GetDetails(ProductId);
             }
            
             return  View(model);
         }
 
         [HttpGet]
-        public IActionResult Details(SellerProductsViewModel model,string id)
+        public JsonResult Details(SellerProductsViewModel model,string ProductId)
         {
-             model.productDetailsDtos= _service.GetDetails(id);
-            return View(model);
+            List<ProductDetailsDto> result =  _service.GetDetails(ProductId);
+            //var data = JsonConvert.SerializeObject(result);
+            return Json(result);
         }
 
        
@@ -105,5 +107,7 @@ namespace Chart_in_Core.Controllers
                 new SelectListItem {Text = "ارزش افزوده", Value = "3"},
             }
         };
+
+        public List<ProductDetailsDto> ProductDetailsDto { get; private set; }
     }
 }

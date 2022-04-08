@@ -8,7 +8,7 @@ namespace Chart_in_Core.Models
     public interface IService
     {
         Task<List<SellerProductsDto>> lookup(string ncode);
-        public List<ProductDetailsDto> GetDetails(string id);
+       List<ProductDetailsDto> GetDetails(string id);
     }
 
 }

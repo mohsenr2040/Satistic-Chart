@@ -43,7 +43,7 @@ namespace Chart_in_Core.Models
                     }
                 }
             }
-            return Lst_Result;
+            return  Lst_Result;
         }
 
         public async Task<List<SellerProductsDto>> lookup(string ncode)

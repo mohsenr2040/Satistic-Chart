@@ -5875,6 +5875,7 @@ a.close.disabled {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   padding: 1rem;
+  overflow-x:auto;
 }
 
 .modal-footer {
@@ -5910,6 +5911,7 @@ a.close.disabled {
   .modal-dialog {
     max-width: 500px;
     margin: 1.75rem auto;
+    overflow-x:initial!important;
   }
   .modal-dialog-scrollable {
     max-height: calc(100% - 3.5rem);
