@@ -5,7 +5,7 @@
   }
   
   .flowchart_body {
-    /*min-width: 1200px;*/
+    min-width: 1200px;
     margin: 0;
     padding: 50px;
     color: #eee9dc;
