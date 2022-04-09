@@ -1,31 +1,70 @@
-﻿@using Chart_in_Core.Models.ViewModels
-@model SellerProductsViewModel
-@{
-    Layout = null;
-}
+﻿
+
+    <!--Flowchart---->
+    <div id="wrapper" class="flowchart_body" style="overflow-x:scroll">
+        <span style="background-color: green;" class="flowcahrt_label">ارائه اظهارنامه</span>
+        <div class="branch ">
+            <div class="entry sole">
+                <span style="background-color: green;" class="flowcahrt_label">درخواست اسناد و مدارک</span>
+                <div class="branch ">
 
 
-<table class="table table-striped table-bordered zero-configuration dataTable" role="grid">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Brand</th>
-            <th>Price</th>
-            <th>ViewCount</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model.productDetailsDtos != null)
-            @foreach (var item in Model.productDetailsDtos)
-            {
-                <tr>
-                    <td>@Html.DisplayNameFor(m=>@item.Name)</td>
-                    <td>@item.Brand</td>
-                    <td>@item.Price</td>
-                    <td>@item.ViewCount</td>
-                </tr>
-            }
+                    <div class="entry sole">
+                        <span style="background-color: green;" class="flowcahrt_label">صدور برگ تشخیص</span>
+                        <div class="branch lv1">
+                            <div class="entry">
+                                <span style="background-color: green;" class="flowcahrt_label">اعتراض</span>
+                                <div class="branch lv2">
+                                    <div class="entry">
+                                        <span class="flowcahrt_label">Entry-1-1</span>
+                                        <div class="branch lv3">
+                                            <div class="entry sole">
+                                                <span class="flowcahrt_label">Entry-1-1-1</span>
 
-    </tbody>
-</table>
-      
+                                                <div class="branch ">
+                                                    <div class="entry sole">
+                                                        <span class="flowcahrt_label">Entry-1-1-1-1</span>
+
+                                                        <div class="branch">
+                                                            <div class="entry sole">
+                                                                <span class="flowcahrt_label">Entry-1-1-1-1-1</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="entry">
+                                        <span class="flowcahrt_label">Entry-1-2</span>
+                                        <div class="branch lv3">
+                                            <div class="entry sole"><span class="flowcahrt_label">Entry-1-2-1</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="entry">
+                                        <span class="flowcahrt_label">Entry-1-3</span>
+                                        <div class="branch lv3">
+                                            <div class="entry sole"><span class="flowcahrt_label">Entry-1-3-1</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="entry">
+                                <span style="background-color: gray;" id="Tamkin" class="flowcahrt_label">تمکین</span>
+                                <div class="branch lv3">
+                                    <div class="entry sole"><span style="background-color: gray;" class="flowcahrt_label">صدور برگ قطعی</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+

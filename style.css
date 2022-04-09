@@ -9,7 +9,7 @@
     margin: 0;
     padding: 50px;
     color: #eee9dc;
-    font: 16px ,'B Roya';
+    font: 17px ,'B Roya';
     background: #2e6ba7;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -100,4 +100,40 @@
     left: 0;
     top: 50%;
     margin-top: -15px;
+  }
+
+  .tooltip {
+    position:relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: rgb(250, 247, 247);
+    color: rgb(34, 26, 26);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 120%;
+    left: 45%;
+    margin-left: -60px;
+  }
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent rgb(255, 254, 254) transparent;
+  }
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
   }
