@@ -103,7 +103,11 @@
   }
 
   .tooltip {
+<<<<<<< HEAD
     position:relative;
+=======
+    position: relative;
+>>>>>>> 4fce33b7744622253b5f863d3187056a4e532d32
     display: inline-block;
     border-bottom: 1px dotted black;
   }
@@ -120,6 +124,7 @@
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
+<<<<<<< HEAD
     top: 120%;
     left: 45%;
     margin-left: -60px;
@@ -134,6 +139,10 @@
     border-style: solid;
     border-color: transparent transparent rgb(255, 254, 254) transparent;
   }
+=======
+  }
+  
+>>>>>>> 4fce33b7744622253b5f863d3187056a4e532d32
   .tooltip:hover .tooltiptext {
     visibility: visible;
   }
