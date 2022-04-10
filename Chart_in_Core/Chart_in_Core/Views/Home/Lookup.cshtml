@@ -263,6 +263,8 @@
 
             }
         });
+       
+        
         ShowDetailsModal();
     }
 
@@ -363,8 +365,8 @@
 
 @section Modals
 {
-    <div class="modal fade" id="DetailsModal" role="document">
-        <div class="modal-body" role="document">
+    <div class="modal" id="DetailsModal" >
+   
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -372,17 +374,14 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Modal Header</h4>
                 </div>
-                <div class="modal-body">
 
                 @await Html.PartialAsync("Details")
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+               
+               
             </div>
 
-        </div>
+      
     </div>
 
     <!-- Modal  -->
@@ -407,12 +406,12 @@
                         <div id="wrapper">
                             <span style="background-color: green;" class="flowcahrt_label">ارائه اظهارنامه</span>
                             <div class="branch ">
-                                <div class="entry sole">
+                                <div class="sole">
                                     <span style="background-color: green;" class="flowcahrt_label">درخواست اسناد و مدارک</span>
                                     <div class="branch ">
 
 
-                                        <div class="entry sole">
+                                        <div class="sole">
                                             <span style="background-color: green;" class="flowcahrt_label">صدور برگ تشخیص</span>
                                             <div class="branch lv1">
                                                 <div class="entry">
