@@ -9,7 +9,7 @@
     {
         XLabels = Newtonsoft.Json.JsonConvert.SerializeObject(Model.SimpleReports.Select(x => x.DimensionOne).ToList());
         YValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.SimpleReports.Select(x => x.Quantity).ToList());
-
+        
     }
 
 }
@@ -148,27 +148,49 @@
 
 
 </section>
+        @*@if(Model.SimpleReports!=null)
+            {
+                <table>
+                    @foreach (var item in Model.SimpleReports)
+                    {
+                        <tr>
+                            <td>
+                                @item.DimensionOne
+                            </td>
+                            <td>
+                                @item.Quantity
+                            </td>
+                        </tr>
+
+                    }
+                </table>
+            }*@
 <div class="box-body">
 
     <div class="chart-container">
         <canvas id="chart2" style="width:50%; height:200px"></canvas>
     </div>
+    
 </div>
 
 
 <script>
     function ShowDetailsModal() {
+        var j = ['ماشین لباسشویی دوو سری کاریزما مدل DWK-8140 ظرفیت 8 کیلوگرم ', 'تلویزیون ال ای دی ال جی مدل 43LJ52100 سایز 43 اینچ', 'گوشی موبایل اپل مدل iPhone SE 2020 A2275 ظرفیت 128 گیگابایت', 'ماسک زغال Sevda حجم 75 میلی لیتر ']
+       
+        //var lbl = Html.Raw(XLabels);
+        
         $('#DetailsModal').modal('show');
         setTimeout(function () {
             var modal = $('#DetailsModal');
             var canvas = modal.find('.modal-body canvas');
-
+            
             // Chart initialisieren
             var ctx = canvas[0].getContext("2d");
             // var chartName = "chart";
             //var ctx = $('#DetailsModal').modal('show').getElementById(chartName).getContext('2d');
             var data = {
-                labels: @Html.Raw(XLabels),
+                labels: j,
                 datasets: [{
                     label: "نمودار وضعیت",
                     backgroundColor: [
@@ -248,7 +270,7 @@
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: "GET",
-            url: "Details",
+            url: "Lookup",
             data: postData,
 
             success: function (response) {
@@ -263,8 +285,8 @@
 
             }
         });
-       
-        
+
+
         ShowDetailsModal();
     }
 
@@ -365,7 +387,7 @@
 
 @section Modals
 {
-    <div class="modal" id="DetailsModal" >
+    <div class="modal" id="DetailsModal1" >
    
 
             <!-- Modal content-->
@@ -374,10 +396,11 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Modal Header</h4>
                 </div>
+                <div class="modal-body">
 
                 @await Html.PartialAsync("Details")
 
-               
+                </div>
                
             </div>
 
@@ -385,8 +408,7 @@
     </div>
 
     <!-- Modal  -->
-    <div class="modal fade" id="DetailsModal3" role="document" >
-        <div class="modal-dialog-centered"  style="width:95%">
+    <div class="modal " id="DetailsModal" role="document" >
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle"> جزئیات </h5>
@@ -395,15 +417,15 @@
                     </button>
                 </div>
                 <div class="modal-body" style=" overflow-x: auto">
-                    <!--<div class="box-body" id="div_Chart">
-                        <div class="chart-container">-->
-                            @*<canvas id="chart" style="width:400px; height:200px"></canvas>*@
-                        <!--</div>
-                    </div>-->
-                    <div id="Test0" class="flowchart_body box-body" style="overflow-x:scroll">
+                    <div class="box-body" id="div_Chart">
+                        <div class="chart-container">
+                            <canvas id="chart" style="width:400px; height:200px"></canvas>
+                        </div>
+                    </div>
+                    <!--<div id="Test0" class="flowchart_body box-body" style="overflow-x:scroll">
 
-                        <!--Flowchart---->
-                        <div id="wrapper">
+                       <!--Flowchart---->
+                        <!--<div id="wrapper">
                             <span style="background-color: green;" class="flowcahrt_label">ارائه اظهارنامه</span>
                             <div class="branch ">
                                 <div class="sole">
@@ -471,7 +493,7 @@
                         </div>
 
 
-                    </div>
+                    </div>-->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#DetailsModal').modal('hide')">Close</button>
                     </div>
@@ -480,8 +502,6 @@
             </div>
 
 
-
-        </div>
     </div>
 }
 

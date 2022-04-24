@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowchart</title>
+     
+    <link rel="stylesheet" href="flowchart.css">
+
+</head>
+<body>
+    
+<svg id="defs">
+    <symbol id="hinge">
+      <line x1="50%" y1="50%" x2="50%" y2="0%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%"></line>
+      <line x1="0" y1="50%" x2="50%" y2="50%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%"> </line>
+    </symbol>
+  </svg>
+  <svg id="defs">
+    <symbol id="hinge-2">
+      <line x1="50%" y1="50%" x2="100%" y2="50%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%"></line>
+      <line x1="50%" y1="100%" x2="50%" y2="50%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%"></line>
+    </symbol>
+  </svg>
+  <svg id="defs">
+    <symbol id="vertical">
+      <line x1="50%" y1="100%" x2="50%" y2="0%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%"></line>
+    </symbol>
+  </svg>
+  <svg id="defs">
+    <symbol id="vertical-down">
+      <line x1="50%" y1="100%" x2="50%" y2="0%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%"></line>
+      <line x1="45%" y1="68%" x2="50%" y2="100%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%"></line>
+      <line x1="55%" y1="68%" x2="50%" y2="100%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%"></line>
+    </symbol>
+  </svg>
+  <svg id="defs">
+    <symbol id="vertical-up">
+      <line x1="50%" y1="100%" x2="50%" y2="0%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%"></line>
+      <line x1="45%" y1="30%" x2="50%" y2="10%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%"></line>
+      <line x1="55%" y1="30%" x2="50%" y2="10%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%"></line>
+    </symbol>
+  </svg>
+  <svg id="defs">
+    <symbol id="horizontal">
+      <line x1="0%" y1="50%" x2="100%" y2="50%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%"></line>
+    </symbol>
+  </svg>
+  <svg id="defs">
+    <symbol id="horizontal-left">
+      <line x1="0%" y1="50%" x2="100%" y2="50%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%" x="0px" y="0px"></line>
+      <line x1="35%" y1="30%" x2="0" y2="50%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%" x="0px" y="0px"></line>
+      <line x1="35%" y1="70%" x2="0" y2="50%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%" x="0px" y="0px"></line>
+    </symbol>
+  </svg>
+  <svg id="defs">
+    <symbol id="horizontal-right">
+      <line x1="0%" y1="50%" x2="100%" y2="50%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%" x="0px" y="0px"></line>
+      <line x1="70%" y1="30%" x2="100%" y2="50%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%" x="0px" y="0px"></line>
+      <line x1="70%" y1="70%" x2="100%" y2="50%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%" x="0px" y="0px"></line>
+    </symbol>
+  </svg>
+  <svg id="defs">
+    <symbol id="quad-1">
+      <line x1="0%" y1="100%" x2="100%" y2="0%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%" x="0px" y="0px"></line>
+    </symbol>
+  </svg>
+  <svg id="defs">
+    <symbol id="quad-2">
+      <line x1="0%" y1="0%" x2="100%" y2="100%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%" x="0px" y="0px"></line>
+    </symbol>
+  </svg>
+  <svg id="defs">
+    <symbol id="quad-3">
+      <line x1="0%" y1="0%" x2="100%" y2="100%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%" x="0px" y="0px"></line>
+    </symbol>
+  </svg>
+  <svg id="defs">
+    <symbol id="quad-4">
+      <line x1="0%" y1="100%" x2="100%" y2="0%" style="stroke-width: 1px" stroke="blue" width="100%" height="100%" x="0px" y="0px"></line>
+    </symbol>
+  </svg>
+  <svg id="defs">
+    <symbol id="angle">
+      <line x1="0" y1="100%" x2="100%" y2="0" style="stroke-width: 1px" stroke="blue" width="100%" height="100%" x="0px" y="0px"></line>
+      <line x1="65%" y1="0" x2="100%" y2="0" style="stroke-width: 1px" stroke="blue" width="100%" height="100%" x="0px" y="0px"></line>
+      <line x1="100%" y1="45%" x2="100%" y2="0" style="stroke-width: 1px" stroke="blue" width="100%" height="100%" x="0px" y="0px"></line>
+    </symbol>
+  </svg>
+ 
+  
+  <div class="diagram gr flow">
+    <div class="cell row-1 col-5 brackets">
+      <div class="layer">
+        <svg class="liner hinge">
+          <use xlink:href="#hinge-2"></use>
+        </svg>
+      </div>
+    </div>
+    <div class="cell row-1 col-6 center">
+      <svg class="liner vertical">
+        <use xlink:href="#vertical"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal"></use>
+      </svg>
+    </div>
+    <div class="cell row-1 col-7 center">
+      <svg class="liner vertical">
+        <use xlink:href="#vertical"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal"></use>
+      </svg>
+    </div>
+    <div class="cell row-1 col-8 center">
+      <svg class="liner vertical">
+        <use xlink:href="#vertical"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal"></use>
+      </svg>
+    </div>
+    <div class="cell row-1 col-9 box brackets">
+      <div class="layer">
+        <label>
+           Recover<span class="br">password</span></label>
+      </div>
+    </div>
+    <div class="cell row-1 col-11 box brackets">
+      <div class="layer">
+        <label>Onboarding</label>
+      </div>
+    </div>
+    <div class="cell row-1 col-13 btm">
+      <div class="terminal set">
+        <label>A</label>
+      </div>
+    </div>
+    <div class="cell row-1 col-15 box brackets">
+      <div class="layer">
+        <label>
+           Profile<span class="br">view / edit</span></label>
+      </div>
+    </div>
+    <div class="cell row-2 col-5 center brackets">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-left"></use>
+      </svg>
+    </div>
+    <div class="cell row-2 col-9 brackets center nope after">
+      <svg class="liner vertical up">
+        <use xlink:href="#vertical-up"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-right"></use>
+      </svg>
+    </div>
+    <div class="cell row-2 col-11 brackets center nope after">
+      <svg class="liner vertical up">
+        <use xlink:href="#vertical-up"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-right"></use>
+      </svg>
+    </div>
+    <div class="cell row-2 col-12 brackets"></div>
+    <div class="cell row-2 col-13 center brackets">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-left"></use>
+      </svg>
+    </div>
+    <div class="cell row-2 col-14 brackets">
+      <svg class="liner angle">
+        <use xlink:href="#angle"></use>
+      </svg>
+    </div>
+    <div class="cell row-3 col-1 center start">
+      <div class="terminal">
+        <label>S</label>
+      </div>
+    </div>
+    <div class="cell row-3 col-2 center">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-right"></use>
+      </svg>
+    </div>
+    <div class="cell row-3 col-3 box brackets">
+      <div class="layer">
+        <label>Landing<span class="br">Page</span></label>
+      </div>
+    </div>
+    <div class="cell row-3 col-4 center">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-right"></use>
+      </svg>
+    </div>
+    <div class="cell row-3 col-5 box brackets">
+      <div class="layer">
+        <label>Sign in</label>
+      </div>
+    </div>
+    <div class="cell row-3 col-6 center">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-right"></use>
+      </svg>
+    </div>
+    <div class="cell row-3 col-7 brackets choice">
+      <div class="layer">
+        <label>Recognised email?</label>
+      </div>
+      <div class="layer">
+        <div class="quad">
+          <svg class="liner">
+            <use xlink:href="#quad-1"></use>
+          </svg>
+        </div>
+        <div class="quad">
+          <svg class="liner">
+            <use xlink:href="#quad-2"></use>
+          </svg>
+        </div>
+        <div class="quad">
+          <svg class="liner">
+            <use xlink:href="#quad-3"></use>
+          </svg>
+        </div>
+        <div class="quad">
+          <svg class="liner">
+            <use xlink:href="#quad-4"></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="cell row-3 col-8 center yes">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-right"></use>
+      </svg>
+    </div>
+    <div class="cell row-3 col-9 brackets choice">
+      <div class="layer">
+        <label>Recognised password?</label>
+      </div>
+      <div class="layer">
+        <div class="quad">
+          <svg class="liner">
+            <use xlink:href="#quad-1"></use>
+          </svg>
+        </div>
+        <div class="quad">
+          <svg class="liner">
+            <use xlink:href="#quad-2"></use>
+          </svg>
+        </div>
+        <div class="quad">
+          <svg class="liner">
+            <use xlink:href="#quad-3"></use>
+          </svg>
+        </div>
+        <div class="quad">
+          <svg class="liner">
+            <use xlink:href="#quad-4"></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="cell row-3 col-10 center yes">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-right"></use>
+      </svg>
+    </div>
+    <div class="cell row-3 col-11 brackets choice">
+      <div class="layer">
+        <label>Is all mandatory information entered?</label>
+      </div>
+      <div class="layer">
+        <div class="quad">
+          <svg class="liner">
+            <use xlink:href="#quad-1"></use>
+          </svg>
+        </div>
+        <div class="quad">
+          <svg class="liner">
+            <use xlink:href="#quad-2"></use>
+          </svg>
+        </div>
+        <div class="quad">
+          <svg class="liner">
+            <use xlink:href="#quad-3"></use>
+          </svg>
+        </div>
+        <div class="quad">
+          <svg class="liner">
+            <use xlink:href="#quad-4"></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="cell row-3 col-12 center yes">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-right"></use>
+      </svg>
+    </div>
+    <div class="cell row-3 col-13 box brackets">
+      <div class="layer">
+        <label>Dashboard / View previous receipts</label>
+      </div>
+    </div>
+    <div class="cell row-3 col-14 center">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-right"></use>
+      </svg>
+    </div>
+    <div class="cell row-3 col-15 box brackets">
+      <div class="layer">
+        <label>Create new reciept</label>
+      </div>
+    </div>
+    <div class="cell row-3 col-16 center">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-right"></use>
+      </svg>
+    </div>
+    <div class="cell row-3 col-17 box brackets">
+      <div class="layer">
+        <label>Complete<span class="br">form</span></label>
+      </div>
+    </div>
+    <div class="cell row-3 col-18 center">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-right"></use>
+      </svg>
+    </div>
+    <div class="cell row-3 col-19 brackets choice">
+      <div class="layer">
+        <label>Review<span class="br">OK?</span></label>
+      </div>
+      <div class="layer">
+        <div class="quad">
+          <svg class="liner">
+            <use xlink:href="#quad-1"></use>
+          </svg>
+        </div>
+        <div class="quad">
+          <svg class="liner">
+            <use xlink:href="#quad-2"></use>
+          </svg>
+        </div>
+        <div class="quad">
+          <svg class="liner">
+            <use xlink:href="#quad-3"></use>
+          </svg>
+        </div>
+        <div class="quad">
+          <svg class="liner">
+            <use xlink:href="#quad-4"></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="cell row-3 col-20 center yes">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-right"></use>
+      </svg>
+    </div>
+    <div class="cell row-3 col-21 box brackets">
+      <div class="layer">
+        <label>Send<span class="br">summary</span></label>
+      </div>
+    </div>
+    <div class="cell row-3 col-22 center">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-right"></use>
+      </svg>
+    </div>
+    <div class="cell row-3 col-23 center end">
+      <div class="terminal set">
+        <label>A</label>
+      </div>
+    </div>
+    <div class="cell row-4 col-5 center brackets">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-right"></use>
+      </svg>
+    </div>
+    <div class="cell row-4 col-7 center brackets nope before">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal"></use>
+      </svg>
+    </div>
+    <div class="cell row-4 col-13 center brackets">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-right"></use>
+      </svg>
+    </div>
+    <div class="cell row-4 col-14 brackets">
+      <svg class="liner angle">
+        <use xlink:href="#angle"></use>
+      </svg>
+    </div>
+    <div class="cell row-4 col-16 brackets"></div>
+    <div class="cell row-4 col-17 brackets center">
+      <svg class="liner vertical up">
+        <use xlink:href="#vertical-up"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-right"></use>
+      </svg>
+    </div>
+    <div class="cell row-4 col-19 center brackets nope before">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal"></use>
+      </svg>
+    </div>
+    <div class="cell row-4 col-21 center">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-left"></use>
+      </svg>
+    </div>
+    <div class="cell row-5 col-5 box brackets">
+      <div class="layer">
+        <label>Sign up</label>
+      </div>
+    </div>
+    
+
+    <div class="cell row-5 col-6 center">
+      <svg class="liner vertical down">
+        <use xlink:href="#vertical-down"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-left"></use>
+      </svg>
+    </div>
+    <div class="cell row-5 col-7 brackets">
+      <div class="layer">
+        <svg class="liner hinge hinge-b">
+          <use xlink:href="#hinge"></use>
+        </svg>
+      </div>
+    </div>
+    <div class="cell row-5 col-13 box brackets">
+      <div class="layer">
+        <label>Log out</label>
+      </div>
+    </div>
+    <div class="cell row-5 col-15 box brackets">
+      <div class="layer">
+        <label>View / create from existing</label>
+      </div>
+    </div>
+    <div class="cell row-5 col-16 center"></div>
+    <div class="cell row-5 col-17 box brackets">
+      <div class="layer">
+        <label>Edit</label>
+      </div>
+    </div>
+    <div class="cell row-5 col-18 center">
+      <svg class="liner vertical up">
+        <use xlink:href="#vertical-up"></use>
+      </svg>
+      <svg class="liner horizontal">
+        <use xlink:href="#horizontal-left"></use>
+      </svg>
+    </div>
+    <div class="cell row-5 col-19 brackets">
+      <div class="layer">
+        <svg class="liner hinge hinge-b">
+          <use xlink:href="#hinge"></use>
+        </svg>
+      </div>
+    </div>
+    <div class="cell row-5 col-21 box dashed brackets">
+      <div class="layer">
+        <label>Send to inbox</label>
+      </div>
+    </div>
+
+    <div class="cell row-6 col-5 center brackets">
+        <svg class="liner vertical down">
+          <use xlink:href="#vertical-down"></use>
+        </svg>
+      
+      </div>
+
+      <div class="cell row-7 col-5 box brackets">
+        <div class="layer">
+          <label>Sign... up</label>
+        </div>
+      </div>
+
+  </div>
+</body>
+</html>

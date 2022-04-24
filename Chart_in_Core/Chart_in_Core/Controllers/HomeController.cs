@@ -60,8 +60,8 @@ namespace Chart_in_Core.Controllers
 
             if (CodMelli!=null)
             {
-                var lstModel = new List<SimpleReportViewModel>();
                 List<SellerProductsDto> lst_prds= await _service.lookup(CodMelli);
+                var lstModel = new List<SimpleReportViewModel>();
 
                 foreach (var item in lst_prds)
                 {
@@ -75,23 +75,36 @@ namespace Chart_in_Core.Controllers
                 {
                     productsDtos = lst_prds,
                     ddl_sourceId = ddl_Source.Id,
-                    SimpleReports= lstModel,
+                    SimpleReports = lstModel,
                     //CodMelli= CodMelli
                 };
                 
             }
             if(ProductId != null)
             {
+                CodMelli = "Plus";
                 model.productDetailsDtos =  _service.GetDetails(ProductId);
+               
+
             }
-           
             return  View(model);
         }
 
         [HttpGet]
         public JsonResult Details(SellerProductsViewModel model,string ProductId)
         {
+            var lstModel = new List<SimpleReportViewModel>();
+
             List<ProductDetailsDto> result =  _service.GetDetails(ProductId);
+            foreach (var item in result)
+            {
+                lstModel.Add(new SimpleReportViewModel
+                {
+                    DimensionOne = item.Name,
+                    Quantity = item.Price
+                });
+            }
+            ViewBag.chart =JsonConvert.SerializeObject( lstModel);
             //var data = JsonConvert.SerializeObject(result);
             return Json(result);
         }
